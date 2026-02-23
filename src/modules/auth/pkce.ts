@@ -1,14 +1,3 @@
-// Simple PKCE utilities (NOT crypto-strength for production—replace with WebCrypto)
-import crypto from 'crypto';
-
-export function generateCodeVerifier(): string {
-  return base64Url(crypto.randomBytes(32));
-}
-
-export function generateCodeChallenge(verifier: string): string {
-  return base64Url(crypto.createHash('sha256').update(verifier).digest());
-}
-
-function base64Url(buf: Buffer) {
-  return buf.toString('base64').replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+{
+  "corrected_content": "// Simple PKCE utilities (NOT crypto-strength for production—replace with WebCrypto)\nimport { randomBytes, createHash } from 'node:crypto';\n\nexport function generateCodeVerifier(): string {\n  return base64Url(randomBytes(32));\n}\n\nexport function generateCodeChallenge(verifier: string): string {\n  return base64Url(createHash('sha256').update(verifier).digest());\n}\n\nfunction base64Url(buf: Buffer) {\n  return buf.toString('base64').replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');\n}\n"
 }
