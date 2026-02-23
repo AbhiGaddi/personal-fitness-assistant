@@ -1,5 +1,6 @@
 import './globals.css';
 import React from 'react';
+import Header from '../components/Header';
 
 export const metadata = {
   title: 'Personalized Fitness AI',
@@ -18,21 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
       </body>
     </html>
-  );
-}
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-40 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
-        <a href="/" className="text-base font-semibold tracking-tight text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Personalized Fitness <span className="text-brand-600">AI</span></a>
-        <nav aria-label="Primary" className="flex items-center gap-6 text-sm font-medium">
-          <a href="/planner" className="text-gray-600 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded px-1">Planner</a>
-          <a href="/dashboard" className="text-gray-600 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded px-1">Dashboard</a>
-          <a href="/onboarding" className="text-gray-600 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded px-1">Onboarding</a>
-        </nav>
-      </div>
-    </header>
   );
 }
 
