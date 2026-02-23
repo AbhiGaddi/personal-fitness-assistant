@@ -1,32 +1,42 @@
-import { generateMockKpis, mockWeeklyMinutes } from '@/modules/dashboard/mockData';
-import { AdherenceGauge } from '@/components/charts/AdherenceGauge';
-import { WeeklyMinutesLine } from '@/components/charts/WeeklyMinutesLine';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
-export default function DashboardPage(){
-  const kpis = generateMockKpis();
-  const weekly = mockWeeklyMinutes();
-  return (
-    <main className="space-y-6">
-      <h2 className="text-lg font-semibold">Health Monitoring (Mock)</h2>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-        <Stat label="Sessions" value={kpis.totalSessions} />
-        <Stat label="Minutes" value={kpis.minutesActive} />
-        <Stat label="Adherence" value={(kpis.adherence*100).toFixed(0)+'%'} />
-        <Stat label="Common Duration" value={kpis.mostCommonDuration+'m'} />
-      </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        <AdherenceGauge adherence={kpis.adherence} />
-        <WeeklyMinutesLine data={weekly} />
-      </div>
-    </main>
-  );
-}
+export default function DashboardPage() {
+  const data = [
+    {
+      title: "Users",
+      link: "/dashboard/users",
+      description: "Manage users and their roles.",
+    },
+    {
+      title: "Settings",
+      link: "/dashboard/settings",
+      description: "Configure application settings.",
+    },
+    {
+      title: "Analytics",
+      link: "/dashboard/analytics",
+      description: "View performance metrics.",
+    },
+  ];
 
-function Stat({ label, value }:{ label:string; value: any }){
   return (
-    <div className="p-4 rounded border bg-white">
-      <div className="text-xs text-gray-500">{label}</div>
-      <div className="text-xl font-semibold">{value}</div>
+    <div className="container mx-auto py-10">
+      <h1 className="text-4xl font-bold mb-6">Dashboard</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {data.map((item) => (
+          <Link key={item.title} href={item.link} passHref>
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle>{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{item.description}</p>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
