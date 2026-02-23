@@ -1,19 +1,4 @@
-interface Point { weekDay: string; minutes: number }
-export function WeeklyMinutesLine({ data }: { data: Point[] }) {
-  const max = Math.max(...data.map(d=>d.minutes), 1);
-  return (
-    <div className="p-4 rounded border bg-white">
-      <div className="text-sm font-medium mb-2">Weekly Minutes</div>
-      <svg viewBox="0 0 200 80" className="w-full h-32">
-        {data.map((d,i)=>{
-          const x = (i/(data.length-1))*180 + 10; const y = 70 - (d.minutes/max)*60;
-          return <circle key={d.weekDay} cx={x} cy={y} r={3} fill="#0284c7" />;
-        })}
-        <polyline fill="none" stroke="#0ea5e9" strokeWidth={2} points={data.map((d,i)=>{ const x=(i/(data.length-1))*180 +10; const y=70 -(d.minutes/max)*60; return `${x},${y}`;}).join(' ')} />
-      </svg>
-      <div className="flex justify-between text-[10px] text-gray-500 mt-1">
-        {data.map(d=> <span key={d.weekDay}>{d.weekDay}</span>)}
-      </div>
-    </div>
-  );
+{
+  "FILE_PATH": "src/components/charts/WeeklyMinutesLine.tsx",
+  "REVISED_CONTENT": "interface Point { weekDay: string; minutes: number }\nexport function WeeklyMinutesLine({ data }: Readonly<{ data: readonly Point[] }>) {\n  const max = Math.max(...data.map((d) => d.minutes), 1);\n  return (\n    <div className=\"p-4 rounded border bg-white\">\n      <div className=\"text-sm font-medium mb-2\">Weekly Minutes</div>\n      <svg viewBox=\"0 0 200 80\" className=\"w-full h-32\">\n        {data.map((d, i) => {\n          const x = (i / (data.length - 1)) * 180 + 10;\n          const y = 70 - (d.minutes / max) * 60;\n          return <circle key={d.weekDay} cx={x} cy={y} r={3} fill=\"#0284c7\" />;\n        })}\n        <polyline\n          fill=\"none\"\n          stroke=\"#0ea5e9\"\n          strokeWidth={2}\n          points={data\n            .map((d, i) => {\n              const x = (i / (data.length - 1)) * 180 + 10;\n              const y = 70 - (d.minutes / max) * 60;\n              return `${x},${y}`;\n            })\n            .join(' ')}\n        />\n      </svg>\n      <div className=\"flex justify-between text-[10px] text-gray-500 mt-1\">\n        {data.map((d) => (\n          <span key={d.weekDay}>{d.weekDay}</span>\n        ))}\n      </div>\n    </div>\n  );\n}\n"
 }
